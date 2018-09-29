@@ -47,10 +47,10 @@ void loop() {
   x = analogRead(X_PIN);
   y = analogRead(Y_PIN);
 
-  up = x > 530;
-  down = x < 470;
-  left = y < 470;
-  right = y > 530;
+  up = x > 575;
+  down = x < 425;
+  left = y < 425;
+  right = y > 575;
   
   direction = 0;
 
@@ -82,6 +82,9 @@ void loop() {
     break;
 
     case 2:
+      if (r != 50) r < 50 ? r += 1 : r -= 1;
+      if (g != 255) g += 1;
+      if (b != 50) b < 50 ? b += 1 : b -= 1;
     break;
 
     case 3: // green
@@ -106,15 +109,6 @@ void loop() {
       if (r != 255) r += 1;
       if (g != 0) g -= 1;
       if (b != 255) b += 1;
-      
-//      if (b < 50) {        
-//        b += 1;
-//        delay(5);
-//      }
-//      else if (b > 50) {
-//        b -= 1;
-//        delay(5);
-//      }
     break;
           
     case 7: // blue
@@ -123,7 +117,10 @@ void loop() {
       if (b != 255) b += 1;
     break;
 
-    case 8:
+    case 8: // light-blue
+      if (r != 50) r < 50 ? r += 1 : r -= 1;
+      if (g != 50) g < 50 ? g += 1 : g -= 1;
+      if (b != 255) b += 1;    
     break;
   }
 
@@ -148,15 +145,8 @@ void loop() {
 
   setColor();
   setBrightness();
-  strip.show();
+  strip.show();  
 }
-
-
-
-// Red - 255, 0, 0
-// Green - 0, 255, 0
-// Blue - 0, 0, 255
-// White - 255, 255, 255
 
 
 void setColor() {
